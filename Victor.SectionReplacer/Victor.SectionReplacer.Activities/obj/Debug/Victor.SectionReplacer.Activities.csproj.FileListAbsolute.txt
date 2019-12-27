@@ -1,0 +1,9 @@
+C:\Users\Victor Weiss\source\repos\PPT_Section\Output\bin\Debug\Victor.SectionReplacer.Activities.dll
+C:\Users\Victor Weiss\source\repos\PPT_Section\Output\bin\Debug\Victor.SectionReplacer.Activities.pdb
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.csprojAssemblyReference.cache
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.Properties.Resources.jp.resources
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.Properties.Resources.resources
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.csproj.GenerateResource.cache
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.csproj.CopyComplete
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.dll
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer.Activities\obj\Debug\Victor.SectionReplacer.Activities.pdb

@@ -1,0 +1,8 @@
+C:\Users\Victor Weiss\source\repos\PPT_Section\Output\bin\Debug\Victor.SectionReplacer.dll
+C:\Users\Victor Weiss\source\repos\PPT_Section\Output\bin\Debug\Victor.SectionReplacer.pdb
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.csprojAssemblyReference.cache
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.Properties.Resources.jp.resources
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.Properties.Resources.resources
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.csproj.GenerateResource.cache
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.dll
+C:\Users\Victor Weiss\source\repos\PPT_Section\Victor.SectionReplacer\Victor.SectionReplacer\obj\Debug\Victor.SectionReplacer.pdb
