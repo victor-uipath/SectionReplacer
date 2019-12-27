@@ -87,7 +87,7 @@ namespace Victor.SectionReplacer.Activities
             var output = targetFile + " " + targetSection + " " + sourceFile + " " + sourceSection; //app.Concatenate(targetFile, targetSection, sourceFile, sourceSection);
             return ctx =>
             {
-                SampleOutArg.Set(ctx, output);
+                SampleOutArg.Set(ctx, output); //
             };
         }
 
