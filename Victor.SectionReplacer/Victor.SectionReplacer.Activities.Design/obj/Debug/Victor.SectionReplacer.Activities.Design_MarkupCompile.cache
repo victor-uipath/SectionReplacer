@@ -16,5 +16,5 @@ DEBUG;TRACE
 16-71419020
 ..\..\Shared\Themes\Generic.xaml;Designers\ChildActivityDesigner.xaml;Designers\ParentScopeDesigner.xaml;Themes\Icons.xaml;C:\Users\Victor Weiss\source\repos\PPT_Section\Shared\UiPath.Shared.Activities.Design\Controls\ComboboxControl.xaml;C:\Users\Victor Weiss\source\repos\PPT_Section\Shared\UiPath.Shared.Activities.Design\Controls\FilePathControl.xaml;C:\Users\Victor Weiss\source\repos\PPT_Section\Shared\UiPath.Shared.Activities.Design\Controls\RestrictiveBodyConnector.xaml;C:\Users\Victor Weiss\source\repos\PPT_Section\Shared\UiPath.Shared.Activities.Design\Editors\EditorTemplates.xaml;
 
-True
+False
 

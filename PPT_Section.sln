@@ -20,6 +20,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities", 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities.Design", "Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.shproj", "{DF9C43F0-ADD3-4FBF-995E-84B92F9CBF25}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PPT_Tests", "PPT_Tests\PPT_Tests.vbproj", "{0A53550D-08B8-4BB5-BFDD-F906E35AB3F4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{3b576f1d-9810-43f0-a249-ced7c212234d}*SharedItemsImports = 4
@@ -44,6 +46,10 @@ Global
 		{F308FCFD-FB8B-40A0-A452-CE6F74D0A033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F308FCFD-FB8B-40A0-A452-CE6F74D0A033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F308FCFD-FB8B-40A0-A452-CE6F74D0A033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A53550D-08B8-4BB5-BFDD-F906E35AB3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A53550D-08B8-4BB5-BFDD-F906E35AB3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A53550D-08B8-4BB5-BFDD-F906E35AB3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A53550D-08B8-4BB5-BFDD-F906E35AB3F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,100 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\PPT_Tests\\PPT_Tests.vbproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\PPT_Tests\\PPT_Tests.vbproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\PPT_Tests\\PPT_Tests.vbproj",
+        "projectName": "PPT_Tests",
+        "projectPath": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\PPT_Tests\\PPT_Tests.vbproj",
+        "packagesPath": "C:\\Users\\Victor Weiss\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\PPT_Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\.nuget\\NuGet.Config",
+          "C:\\Users\\Victor Weiss\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Output\\bin\\Debug\\Packages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gallery.uipath.com/api/v2": {},
+          "https://nuget.org/api/v2/": {},
+          "https://uipath.myget.org/F/solution-japan-beta/auth/1ef0ebd7-a28b-4e86-b8eb-b534be56c30b/api/v3/index.json": {},
+          "https://www.myget.org/F/uipath": {},
+          "https://www.myget.org/F/uipath/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Victor.SectionReplacer\\Victor.SectionReplacer\\Victor.SectionReplacer.csproj": {
+                "projectPath": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Victor.SectionReplacer\\Victor.SectionReplacer\\Victor.SectionReplacer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Victor.SectionReplacer\\Victor.SectionReplacer\\Victor.SectionReplacer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Victor.SectionReplacer\\Victor.SectionReplacer\\Victor.SectionReplacer.csproj",
+        "projectName": "Victor.SectionReplacer",
+        "projectPath": "C:\\Users\\Victor Weiss\\source\\repos\\PPT_Section\\Victor.SectionReplacer\\Victor.SectionReplacer\\Victor.SectionReplacer.csproj"
+      },
+      "frameworks": {
+        "net45": {}
+      }
+    }
+  }
+}

@@ -97,7 +97,25 @@ namespace Victor.SectionReplacer.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If selected, the TargetSection will be replaced by the SourceSection. Otherwise, the TargetSection will be appended to the end of the SourceSection..
+        ///   Looks up a localized string similar to If True (default), files will remain open..
+        /// </summary>
+        internal static string ChildActivityLeaveTargetOpenDescription {
+            get {
+                return ResourceManager.GetString("ChildActivityLeaveTargetOpenDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LeaveTargetOpen.
+        /// </summary>
+        internal static string ChildActivityLeaveTargetOpenDisplayName {
+            get {
+                return ResourceManager.GetString("ChildActivityLeaveTargetOpenDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If selected, the TargetSection will be replaced by the SourceSection. Otherwise, the SourceSection will be appended to the end of the TargetSection..
         /// </summary>
         internal static string ChildActivityReplaceDescription {
             get {

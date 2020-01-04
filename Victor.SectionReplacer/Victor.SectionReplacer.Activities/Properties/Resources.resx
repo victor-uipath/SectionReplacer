@@ -178,8 +178,16 @@
     <value>SourceSection</value>
     <comment>display name</comment>
   </data>
+  <data name="ChildActivityLeaveTargetOpenDisplayName" xml:space="preserve">
+    <value>LeaveTargetOpen</value>
+    <comment>display name</comment>
+  </data>
   <data name="ChildActivityTargetSectionDescription" xml:space="preserve">
     <value>The first number.</value>
+    <comment>description</comment>
+  </data>
+  <data name="ChildActivityLeaveTargetOpenDescription" xml:space="preserve">
+    <value>If True (default), files will remain open.</value>
     <comment>description</comment>
   </data>
   <data name="ChildActivityTargetSectionDisplayName" xml:space="preserve">
@@ -187,7 +195,7 @@
     <comment>display name</comment>
   </data>
   <data name="ChildActivityReplaceDescription" xml:space="preserve">
-    <value>If selected, the TargetSection will be replaced by the SourceSection. Otherwise, the TargetSection will be appended to the end of the SourceSection.</value>
+    <value>If selected, the TargetSection will be replaced by the SourceSection. Otherwise, the SourceSection will be appended to the end of the TargetSection.</value>
     <comment>description</comment>
   </data>
   <data name="ChildActivityReplaceDisplayName" xml:space="preserve">
