@@ -8,6 +8,7 @@ using PPT = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
 using System.Diagnostics;
 using System.ComponentModel;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Victor.SectionReplacer.Activities
 {
@@ -89,27 +90,113 @@ namespace Victor.SectionReplacer.Activities
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     protected override async Task<Action<AsyncCodeActivityContext>> ExecuteAsync(AsyncCodeActivityContext context, CancellationToken cancellationToken)
-		{
+        {
             var property = context.DataContext.GetProperties()[ParentScope.ApplicationTag];
             var app = property.GetValue(context.DataContext) as Application;
-           
-            //var replace = Replace.Get(context);
-            //var leaveTargetOpen = LeaveTargetOpen.Get(context);
+
             var targetFile = TargetFile.Get(context);
             var targetSectionName = TargetSection.Get(context);
             var srcFile = SourceFile.Get(context);
-            var srcSection = SourceSection.Get(context);
+            var srcSectionName = SourceSection.Get(context);
 
+            // TO-DO: remove hardcoded filepaths
             srcFile = @"C:\Users\Victor Weiss\Documents\UiPath\PPT Section Replacer\source.pptx";
             targetFile = @"C:\Users\Victor Weiss\Documents\UiPath\PPT Section Replacer\target.pptx";
 
             PPT.Application ppt = new PPT.Application();
             ppt.Visible = MsoTriState.msoTrue;
             PPT.Presentation sourcePPT = ppt.Presentations.Open(srcFile);
+
+            // Find section in source file
             var srcSections = sourcePPT.SectionProperties;
+            var srcSectionIndex = findSourceSection(srcSectionName, srcSections);
+            var srcSectionStart = srcSections.FirstSlide(srcSectionIndex);
+            var srcSectionEnd = srcSectionStart + srcSections.SlidesCount(srcSectionIndex) - 1;
+
+            PPT.Presentation targetPPT = ppt.Presentations.Open(targetFile, MsoTriState.msoFalse);
+            var targetSections = targetPPT.SectionProperties;
+            
+            var targetSectionIndex = findTargetSection(targetSectionName, targetSections);
+            //var targetSectionFirstSlide = 1;
+            //var targetSectionLastSlide = 1;
+            var targetSectionFirstSlide = targetSections.FirstSlide(targetSectionIndex);
+            var targetSectionLastSlide = targetSectionFirstSlide + targetSections.SlidesCount(targetSectionIndex) - 1;
+            
+            if (targetSectionFirstSlide == -1) { // meaning target section has no slides
+                targetSectionFirstSlide = 0;
+                for (int i = 1; i < targetSectionIndex; i++) { // find start index of section
+                    targetSectionFirstSlide += targetSections.SlidesCount(i);
+                }
+                targetSectionLastSlide = targetSectionFirstSlide;
+            }
+
+            // this can be used to preserve source formatting
+            //sourcePPT.Slides[1].Copy();
+
+            // insert slides from sourceSection into targetSection
+            insertSlide(Replace, targetSections, targetSectionIndex, targetPPT, srcFile, 
+                targetSectionFirstSlide, srcSectionStart, srcSectionEnd, targetSectionName, targetSectionLastSlide);
+
+            sourcePPT.Close();
+            targetPPT.Save();
+            if (!LeaveTargetOpen)
+            {
+                targetPPT.Close();
+                ppt.Quit();
+            }
+            // this can be used to preserve source formatting
+            //targetPPT.Windows[1].View.GotoSlide(1);
+            //ppt.CommandBars.ExecuteMso("PasteSourceFormatting");
+
+            var output = targetFile + " " + targetSectionName + " " + srcFile + " " + srcSectionName; //app.Concatenate(targetFile, targetSection, srcFile, srcSection);
+            return ctx =>
+            {
+                SampleOutArg.Set(ctx, output); //
+            };
+        }
+
+        private static void insertSlide(Boolean replace, SectionProperties targetSections, int targetSectionIndex, 
+            Presentation targetPPT, string srcFile, int targetSectionFirstSlide, int srcSectionStart, int srcSectionEnd,
+            string targetSectionName, int targetSectionLastSlide) {
+            try {
+                if (replace) {
+                    targetSections.Delete(targetSectionIndex, replace);
+                    targetPPT.Slides.InsertFromFile(srcFile, targetSectionFirstSlide - 1, srcSectionStart, srcSectionEnd);
+                    var newSectionIndex = targetSections.AddBeforeSlide(targetSectionFirstSlide, targetSectionName);
+                }
+                else {
+                    targetPPT.Slides.InsertFromFile(srcFile, targetSectionLastSlide, srcSectionStart, srcSectionEnd);
+                }
+            }
+            catch (Exception e) {
+                throw new Exception(e.Message + "\ntargetSectionFirstSlide: " + targetSectionFirstSlide
+                    + "\ntargetSectionLastSlide: " + targetSectionLastSlide
+                    + "\nsrcSectionStart: " + srcSectionStart
+                    + "\nsrcSectionEnd: " + srcSectionEnd);
+            }
+        }
+
+        private static int findTargetSection(string targetSectionName, SectionProperties targetSections)
+        {
+            var targetSectionIndex = -1;
+            for (int i = 1; i <= targetSections.Count; i++) {
+                if (targetSections.Name(i) == targetSectionName) {
+                    targetSectionIndex = i;
+                    break;
+                }
+            }
+            if (targetSectionIndex == -1)
+                throw new Exception("TargetSection " + targetSectionName + " not found in TargetFile");
+            return targetSectionIndex;
+        }        
+
+        private static int findSourceSection(string srcSection, SectionProperties srcSections)
+        {
             var srcSectionIndex = -1;
-            for (int i = 1; i <= srcSections.Count; i++) {
-                if (srcSections.Name(i) == srcSection) {
+            for (int i = 1; i <= srcSections.Count; i++)
+            {
+                if (srcSections.Name(i) == srcSection)
+                {
                     srcSectionIndex = i;
                     break;
                 }
@@ -118,66 +205,8 @@ namespace Victor.SectionReplacer.Activities
                 throw new Exception("SourceSection " + srcSection + " not found in SourceFile");
             else if (srcSections.SlidesCount(srcSectionIndex) == 0)
                 throw new Exception("SourceSection " + srcSection + " has no slides");
-            var srcSectionStart = srcSections.FirstSlide(srcSectionIndex);
-            var srcSectionEnd = srcSectionStart + srcSections.SlidesCount(srcSectionIndex) - 1;
 
-            PPT.Presentation targetPPT = ppt.Presentations.Open(targetFile, MsoTriState.msoFalse);
-            var targetSections = targetPPT.SectionProperties;
-            var targetSectionIndex = -1;
-            var targetSectionFirstSlide = 1;
-            var targetSectionLastSlide = 1;
-            for (int i = 1; i <= targetSections.Count; i++) {
-                if (targetSections.Name(i) == targetSectionName) {
-                    targetSectionIndex = i;
-                    targetSectionFirstSlide = targetSections.FirstSlide(i);
-                    targetSectionLastSlide = targetSectionFirstSlide + targetSections.SlidesCount(i) - 1;
-                    break;
-                }
-            }
-           
-            if (targetSectionIndex == -1) 
-                throw new Exception("TargetSection "+targetSectionName+" not found in TargetFile");
-            else if (targetSectionFirstSlide == -1) { // meaning target section has no slides
-                targetSectionFirstSlide = 0;
-                for (int i = 1; i < targetSectionIndex; i++) { // find start index of section
-                    targetSectionFirstSlide += targetSections.SlidesCount(i);
-                }
-                targetSectionLastSlide = targetSectionFirstSlide;
-            }
-            // this can be used to preserve source formatting
-            //sourcePPT.Slides[1].Copy();
-
-            // insert slides from sourceSection into targetSection
-            try {
-                if (Replace) {
-                    targetSections.Delete(targetSectionIndex, Replace);
-                    targetPPT.Slides.InsertFromFile(srcFile, targetSectionFirstSlide-1, srcSectionStart, srcSectionEnd);
-                    var newSectionIndex = targetSections.AddBeforeSlide(targetSectionFirstSlide, targetSectionName); 
-                } else {
-                    targetPPT.Slides.InsertFromFile(srcFile, targetSectionLastSlide, srcSectionStart, srcSectionEnd);
-                }
-            } catch (Exception e) {
-                throw new Exception(e.Message+ "\ntargetSectionFirstSlide: " + targetSectionFirstSlide  
-                    + "\ntargetSectionLastSlide: " + targetSectionLastSlide
-                    + "\nsrcSectionStart: " + srcSectionStart
-                    + "\nsrcSectionEnd: " + srcSectionEnd);
-            }
-
-            sourcePPT.Close();
-            targetPPT.Save();
-            if (!LeaveTargetOpen) {
-                targetPPT.Close();
-                ppt.Quit();
-            }
-            // this can be used to preserve source formatting
-            //targetPPT.Windows[1].View.GotoSlide(1);
-            //ppt.CommandBars.ExecuteMso("PasteSourceFormatting");
-
-            var output = targetFile + " " + targetSectionName + " " + srcFile + " " + srcSection; //app.Concatenate(targetFile, targetSection, srcFile, srcSection);
-            return ctx =>
-            {
-                SampleOutArg.Set(ctx, output); //
-            };
+            return srcSectionIndex;
         }
 
         #endregion
