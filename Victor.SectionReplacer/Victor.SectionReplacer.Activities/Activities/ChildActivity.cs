@@ -127,6 +127,8 @@ namespace Victor.SectionReplacer.Activities
                 for (int i = 1; i < targetSectionIndex; i++) { // find start index of section
                     targetSectionFirstSlide += targetSections.SlidesCount(i);
                 }
+                if (targetSectionFirstSlide == 0)
+                    targetSectionFirstSlide++;
                 targetSectionLastSlide = targetSectionFirstSlide;
             }
 
@@ -135,7 +137,7 @@ namespace Victor.SectionReplacer.Activities
 
             // insert slides from sourceSection into targetSection
             insertSlide(Replace, targetSections, targetSectionIndex, targetPPT, srcFile, 
-                targetSectionFirstSlide, srcSectionStart, srcSectionEnd, targetSectionName, targetSectionLastSlide);
+                targetSectionFirstSlide, srcSectionStart, srcSectionEnd, targetSectionName, targetSectionLastSlide, ppt, targetFile);
 
             sourcePPT.Close();
             targetPPT.Save();
@@ -155,14 +157,25 @@ namespace Victor.SectionReplacer.Activities
             };
         }
 
-        private static void insertSlide(Boolean replace, SectionProperties targetSections, int targetSectionIndex, 
-            Presentation targetPPT, string srcFile, int targetSectionFirstSlide, int srcSectionStart, int srcSectionEnd,
-            string targetSectionName, int targetSectionLastSlide) {
+        private static void insertSlide(Boolean replace, SectionProperties targetSections, int targetSectionIndex, Presentation targetPPT, 
+            string srcFile, int targetSectionFirstSlide, int srcSectionStart, int srcSectionEnd, string targetSectionName, int targetSectionLastSlide, PPT.Application ppt, string targetFile) 
+        {
             try {
                 if (replace) {
-                    targetSections.Delete(targetSectionIndex, replace);
-                    targetPPT.Slides.InsertFromFile(srcFile, targetSectionFirstSlide - 1, srcSectionStart, srcSectionEnd);
-                    var newSectionIndex = targetSections.AddBeforeSlide(targetSectionFirstSlide, targetSectionName);
+                    if (targetSectionIndex == 1) {
+                        int targetNumSlides = targetSections.SlidesCount(1);
+                        targetPPT.Slides.InsertFromFile(srcFile, targetSectionFirstSlide - 1, srcSectionStart, srcSectionEnd);
+                        int srcNumSlides = srcSectionEnd - srcSectionStart + 1;
+                        if (targetNumSlides > 0) {
+                            for (int i = srcNumSlides + 1; i <= targetNumSlides + srcNumSlides; i++) {
+                                targetPPT.Slides[srcNumSlides + 1].Delete();
+                            }
+                        }
+                    } else {
+                        targetSections.Delete(targetSectionIndex, replace);
+                        targetPPT.Slides.InsertFromFile(srcFile, targetSectionFirstSlide - 1, srcSectionStart, srcSectionEnd);
+                        var newSectionIndex = targetSections.AddBeforeSlide(targetSectionFirstSlide, targetSectionName);
+                    }
                 }
                 else {
                     targetPPT.Slides.InsertFromFile(srcFile, targetSectionLastSlide, srcSectionStart, srcSectionEnd);
