@@ -198,20 +198,30 @@
     <value>If selected, the TargetSection will be replaced by the SourceSection. Otherwise, the SourceSection will be appended to the end of the TargetSection.</value>
     <comment>description</comment>
   </data>
+  
+  <data name="CurrentDirectoryDescription" xml:space="preserve">
+    <value>Pass in the current directory</value>
+    <comment>display name</comment>
+  </data>
+  <data name="CurrentDirectoryDisplayName" xml:space="preserve">
+    <value>Current Directory</value>
+    <comment>description</comment>
+  </data>
+  
   <data name="ChildActivityReplaceDisplayName" xml:space="preserve">
     <value>Replace</value>
     <comment>display name</comment>
   </data>
 
   
-  <data name="ChildActivitySumDescription" xml:space="preserve">
+  <!--<data name="ChildActivitySumDescription" xml:space="preserve">
     <value>The sum of the two input numbers.</value>
     <comment>description</comment>
   </data>
   <data name="ChildActivitySumDisplayName" xml:space="preserve">
     <value>Sum</value>
     <comment>display name</comment>
-  </data>
+  </data>-->
   <data name="ValidationMessage" xml:space="preserve">
     <value>Activity is only valid inside a Parent Scope.</value>
     <comment>validation message</comment>

@@ -187,24 +187,6 @@ namespace Victor.SectionReplacer.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The sum of the two input numbers..
-        /// </summary>
-        internal static string ChildActivitySumDescription {
-            get {
-                return ResourceManager.GetString("ChildActivitySumDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sum.
-        /// </summary>
-        internal static string ChildActivitySumDisplayName {
-            get {
-                return ResourceManager.GetString("ChildActivitySumDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file to write slides into..
         /// </summary>
         internal static string ChildActivityTargetFileDescription {
@@ -237,6 +219,24 @@ namespace Victor.SectionReplacer.Activities.Properties {
         internal static string ChildActivityTargetSectionDisplayName {
             get {
                 return ResourceManager.GetString("ChildActivityTargetSectionDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pass in the current directory.
+        /// </summary>
+        internal static string CurrentDirectoryDescription {
+            get {
+                return ResourceManager.GetString("CurrentDirectoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Directory.
+        /// </summary>
+        internal static string CurrentDirectoryDisplayName {
+            get {
+                return ResourceManager.GetString("CurrentDirectoryDisplayName", resourceCulture);
             }
         }
         
